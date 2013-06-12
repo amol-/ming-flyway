@@ -2,13 +2,12 @@ from setuptools import setup, find_packages
 
 __version__ = 'undefined'
 
-exec open('ming/version.py')
+exec open('flyway/version.py')
 
-setup(name='Ming',
+setup(name='Flyway',
       version=__version__,
-      description="Bringing order to Mongo since 2009",
-      long_description="""Database mapping layer for MongoDB on Python. Includes schema enforcement and some facilities for schema migration. 
-""",
+      description="Migration utilities for the Ming MongoDB mapping layer",
+      long_description="""Migration utilities for the Ming MongoDB mapping layer""",
       classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -27,21 +26,13 @@ setup(name='Ming',
       include_package_data=True,
       zip_safe=True,
       install_requires=[
-        "FormEncode >= 1.2.1",
-        "pymongo>=2.4",
-        "PasteScript", # used by flyway
-        "WebOb",
-        # "python-spidermonkey >= 0.0.10", # required for full MIM functionality
-        # tests:
-        "mock >=0.8.0",
+        "ming",
+        "PasteScript",
+      ],
+      tests_require = [
         "nose",
-        "webtest",
       ],
       entry_points="""
-      # -*- Entry points: -*-
-      [paste.filter_factory]
-      ming_autoflush=ming.odm.middleware:make_ming_autoflush_middleware
-
       [flyway.test_migrations]
       a = flyway.tests.migrations_a
       b = flyway.tests.migrations_b
